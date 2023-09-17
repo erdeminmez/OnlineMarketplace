@@ -1,9 +1,8 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.shortcuts import render, redirect
 from item.models import Category, Item
 
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
 
 # Create your views here.
 def index(request):
@@ -25,10 +24,11 @@ def signup(request):
         if form.is_valid():
             form.save()
 
-            return HttpResponseRedirect(reverse("login")) 
+            return redirect('/login/')
     else:
         form = SignupForm()
 
     return render(request, 'core/signup.html', {
         'form': form
     })
+
