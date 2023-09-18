@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from item.models import Category, Item
+from django.contrib.auth import logout
 
-from .forms import SignupForm, LoginForm
+from .forms import SignupForm
 
 # Create your views here.
 def index(request):
@@ -32,3 +33,6 @@ def signup(request):
         'form': form
     })
 
+def logout_view(request):
+    logout(request)
+    return redirect('/login/')
